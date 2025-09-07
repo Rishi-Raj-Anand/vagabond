@@ -1,0 +1,27 @@
+{
+  "name": "vagabond",
+  "version": "1.0.0",
+  "description": "Travel the way you want ...",
+  "keywords": [
+    "Travel"
+  ],
+  "homepage": "https://github.com/Rishi-Raj-Anand/vagabond#readme",
+  "bugs": {
+    "url": "https://github.com/Rishi-Raj-Anand/vagabond/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rishi-Raj-Anand/vagabond.git"
+  },
+  "license": "ISC",
+  "author": "Rishi Raj Anand",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
