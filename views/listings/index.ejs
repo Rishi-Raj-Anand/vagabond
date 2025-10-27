@@ -1,0 +1,17 @@
+<%- layout('/layouts/boilerplate.ejs') -%>
+<body>
+    <h1>VAGABOND</h1>
+    <form method="GET"action="/listings/new">
+        <button >Create New Listing</button>
+    </form>
+    <h3>All Listings</h3>
+
+    <ul>
+        <% for( let listing of allListing  ) { %>
+            <a href="/listings/<%= listing._id %>">
+                <li><%= listing.title %></li>
+            </a>
+        <% } %>
+    </ul>
+</body>
+    

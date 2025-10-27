@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAGABOND</title>
+</head>
+<body>
+    <h1>VAGABOND</h1>
+    <h2><%= listing.title %></h2>
+    <img src="<%= listing.image %>" width="500px" height="400px" alt="Image">
+    <h4>Price :₹ <%= listing.price.toLocaleString("en-IN") %> </h4>
+    <h5><%= listing.description %></h5>
+    <h5><%= listing.location %>,<%= listing.country%></h5>
+    <form action="/listings/<%= listing._id %>/edit" method="get">
+        <button>Edit</button>
+    </form>
+    <br>
+    <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+
+</body>
+</html>
