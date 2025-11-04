@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAGABOND</title>
-</head>
+<%- layout('/layouts/boilerplate.ejs') -%>
+
 <body>
-    <h1>VAGABOND</h1>
     <h2><%= listing.title %></h2>
     <img src="<%= listing.image %>" width="500px" height="400px" alt="Image">
     <h4>Price :₹ <%= listing.price.toLocaleString("en-IN") %> </h4>
@@ -21,4 +15,3 @@
     </form>
 
 </body>
-</html>

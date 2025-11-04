@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAGABOND</title>
-</head>
+<%- layout('/layouts/boilerplate.ejs') -%>
+
 <body>
-    <h1>VAGABOND</h1>
     <h3>New Listing</h3>
     <form action="/listings" method="post">
         <label for="title">Title:</label>
         <input type="text" name="listing[title]" id="title" placeholder="Enter Title">
         <br>
         <br>
-        <label for="desc">Description:</label>
-        <br>
-        <textarea name="listing[description]" id="desc" cols="30" rows="5" placeholder="Enter Details..."></textarea>
-        <br><br>
         <label for="price">Price:₹</label>
         <input type="number" name="listing[price]" id="price" placeholder="Enter Price" min="1">
         <br><br>
@@ -29,7 +19,11 @@
         <label for="country">Country:</label>
         <input type="text" name="listing[country]" id="country" placeholder="Enter Country">
         <br><br>
+        <label for="desc">Description:</label>
+        <br>
+        <textarea name="listing[description]" id="desc" cols="30" rows="5" placeholder="Enter Details..."></textarea>
+        <br><br>
         <button>Submit</button>
     </form>
 </body>
-</html>
+
