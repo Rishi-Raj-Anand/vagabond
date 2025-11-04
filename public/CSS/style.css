@@ -5,15 +5,34 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.italic{
+    font-style:italic ;
+}
+footer{
+    position: relative;
+    margin-bottom: -1rem;
+}
+.main-container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    flex:1;
+}
 .wrapper{
     position: relative;
-    width: 99vw;
+    width: 100vw;
     display: flex;
     flex-direction: column;
 }
 
+.full-width{
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
 
+.navbar{
+    width: 100%;
+}
 
 .navbar{
     height: 5rem;
@@ -56,15 +75,35 @@ footer a{
 }
 
 .card-img-top{
-    width: 15rem;
+    width: 18rem;
     height: 12rem;
-    object-fit:cover;
+    object-fit:fill;
     border-radius: 5%;
+    position: relative;
 }
+
+
 .card{
     border: none;
     margin: 1rem;
+    position: relative;
 }
+
+.card::after{
+    content: "";
+    display: block;
+    width: 18rem;
+    height: 12rem;
+    background-color: #f5f4f4;
+    opacity: 0;
+    position: absolute;
+    border-radius: 5%;
+    
+}
+.card:hover::after{
+    opacity: 0.15;
+}
+
 .card-link{
     text-decoration: none;
 }
@@ -78,5 +117,52 @@ footer a{
 .card-title{
     font-weight: 700;
 }
+
+.form-wrapper{
+    width: 60%;
+    margin-top: 2rem;
+}
+
+.form-2part{
+    display: flex;
+    justify-content: space-between;
+    gap:1rem;
+}
+
+.x2{
+    width: 90%;
+}
+
+.form-label{
+    font-weight: 600;
+}
+
+.show-wrapper{
+    width: 50%;
+    margin-top: 2rem;
+}
+.show-img{
+    width: 100%;
+    height: 40%;
+    object-fit:cover;
+    border-radius:1rem ;
+}
+
+.show-btns{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.show-desc{
+    margin: 1rem 0 1rem 0;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+}
+.show-title{
+    text-transform: capitalize;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
 
 
