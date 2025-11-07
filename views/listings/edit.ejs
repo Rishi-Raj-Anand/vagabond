@@ -4,44 +4,50 @@
 
 <div class="form-wrapper mx-auto ">
     <h3>Edit Listing</h3>
-    <form action="/listings/<%=listing._id%>?_method=PUT" method="POST">
+    <form action="/listings/<%=listing._id%>?_method=PUT" method="POST" class="needs-validation" novalidate>
 
         <div class="full-width">
             <label for="title" class="form-label">Title:</label>
-            <input type="text" name="listing[title]" id="title" value="<%=listing.title%>" class="form-control ">
+            <input type="text" name="listing[title]" id="title" value="<%=listing.title%>" class="form-control " required> 
+            <div class="invalid-feedback">Title required !!</div>
         </div>
 
         <div class="form-2part full-width">
             <div class=" x2">
                 <label for="price" class="form-label">Price:₹</label>
-                <input type="number" name="listing[price]" id="price" value="<%=listing.price%>"  class="form-control">
+                <input type="number" name="listing[price]" id="price" value="<%=listing.price%>"  class="form-control" required>
+                <div class="invalid-feedback">Price required !!</div>
             </div>
             
             <div class="x2">
                 <label for="image" class="form-label">Image:</label>
-                <input type="url" name="listing[image]" id="image" value="<%=listing.image%>" class="form-control">
+                <input type="url" name="listing[image]" id="image" value="<%=listing.image%>" class="form-control" required>
+                <div class="invalid-feedback">Image required !!</div>
             </div>
         </div>
         
         <div class="form-2part full-width">
             <div class="full-width x2">
                 <label for="location" class="form-label">Location:</label>
-                <input type="text" name="listing[location]" id="location" value="<%=listing.location%>" class="form-control ">
+                <input type="text" name="listing[location]" id="location" value="<%=listing.location%>" class="form-control " required>
+                <div class="invalid-feedback">Location required !!</div>
             </div>
             
             <div class="full-width x2">
                 <label for="country" class="form-label">Country:</label>
-                <input type="text" name="listing[country]" id="country" value="<%=listing.country%>" class="form-control">
+                <input type="text" name="listing[country]" id="country" value="<%=listing.country%>" class="form-control" required>
+                <div class="invalid-feedback">Country required !!</div>
             </div>
         </div>
         
         <div class="full-width">
             <label for="desc" class="form-label">Description:</label>
             <br>
-            <textarea name="listing[description]" id="desc" cols="30" rows="5"  class="form-control"><%=listing.description%></textarea>
+            <textarea name="listing[description]" id="desc" cols="30" rows="5"  class="form-control" required><%=listing.description%></textarea>
+            <div class="invalid-feedback">Description required !!</div>
             <br>
         </div>
-        <button class="btn btn-danger form-btn">Submit</button>
+        <button class="btn btn-danger form-btn">Submit</button> 
     </form>
 </div>
 

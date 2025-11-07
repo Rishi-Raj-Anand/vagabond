@@ -1,45 +1,56 @@
 <%- layout('/layouts/boilerplate.ejs') -%>
 
-<div class="form-wrapper mx-auto ">
-    <h3>New Listing</h3>
-    <form action="/listings" method="post" class="form-new">
-        <div class="full-width">
-            <label for="title" class="form-label">Title:</label>
-            <input type="text" name="listing[title]" id="title" placeholder="Enter Title" class="form-control">
-        </div>
+    <div class="form-wrapper mx-auto ">
+        <h3>New Listing</h3>
+        <form action="/listings" method="post" class="needs-validation form-new " novalidate>
+            <div class="full-width" >
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" name="listing[title]" id="title" placeholder="Enter Title" class="form-control"
+                    required>
+                
+                <div class="invalid-feedback">Title required !!</div>
+            </div>
 
-        <div class="form-2part full-width">
-            <div class=" x2">
-                <label for="price" class="form-label">Price:₹</label>
-                <input type="number" name="listing[price]" id="price" placeholder="Enter Price" min="1" class="form-control">
-            </div>
-            
-            <div class="x2">
-                <label for="image" class="form-label">Image:</label>
-                <input type="url" name="listing[image]" id="image" placeholder="Enter Image URL" class="form-control">
-            </div>
-        </div>
-        
-        <div class="form-2part full-width">
-            <div class="full-width x2">
-                <label for="location" class="form-label">Location:</label>
-                <input type="text" name="listing[location]" id="location" placeholder="Enter Location" class="form-control ">
-            </div>
-            
-            <div class="full-width x2">
-                <label for="country" class="form-label">Country:</label>
-                <input type="text" name="listing[country]" id="country" placeholder="Enter Country" class="form-control">
-            </div>
-        </div>
-        
-        <div class="full-width">
-            <label for="desc" class="form-label">Description:</label>
-            <br>
-            <textarea name="listing[description]" id="desc" cols="30" rows="5" placeholder="Enter Details..." class="form-control"></textarea>
-            <br>
-        </div>
-        <button class="btn btn-danger form-btn">Submit</button>
-    </form>
-</div>
-    
+            <div class="form-2part full-width">
+                <div class=" x2">
+                    <label for="price" class="form-label">Price:₹</label>
+                    <input type="number" name="listing[price]" id="price" placeholder="Enter Price" min="1"
+                        class="form-control" required>
+                    <div class="invalid-feedback">Price required !!</div>
+                </div>
+                
 
+                <div class="x2">
+                    <label for="image" class="form-label">Image:</label>
+                    <input type="url" name="listing[image]" id="image" placeholder="Enter Image URL"
+                        class="form-control">
+                </div>
+            </div>
+
+            <div class="form-2part full-width">
+                <div class="full-width x2">
+                    <label for="location" class="form-label">Location:</label>
+                    <input type="text" name="listing[location]" id="location" placeholder="Enter Location"
+                        class="form-control" required>
+                    <div class="invalid-feedback">Location required !!</div>
+                </div>
+
+                <div class="full-width x2">
+                    <label for="country" class="form-label">Country:</label>
+                    <input type="text" name="listing[country]" id="country" placeholder="Enter Country"
+                        class="form-control" required>
+                    <div class="invalid-feedback">Country required !!</div>
+                </div>
+            </div>
+
+            <div class="full-width">
+                <label for="desc" class="form-label">Description:</label>
+                <br>
+                <textarea name="listing[description]" id="desc" cols="30" rows="5" placeholder="Enter Details..."
+                    class="form-control" required></textarea>
+                <div class="invalid-feedback">Description required !!</div>
+                <br>
+            </div>
+            <button class="btn btn-danger form-btn">Submit</button>
+        </form>
+    </div>
