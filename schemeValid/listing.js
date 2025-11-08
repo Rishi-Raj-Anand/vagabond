@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const { countDocuments } = require('../models/listing');
 
 const listingValidation=Joi.object({
     listing:Joi.object({
