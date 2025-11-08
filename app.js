@@ -4,6 +4,7 @@ const app = express();
 const ExpressError=require('./utils/ExpressError.js')
 const asyncWrap=require('./utils/asyncWrap.js')
 const listingValidation=require('./schemeValid/listing.js')
+const Review=require('./models/review.js')
 let port = 8080;
 
 const Listing = require('./models/listing.js');
@@ -23,7 +24,8 @@ app.set("views", path.join(__dirname, "/views"));
 app.use(express.static(path.join(__dirname, "/public")));
 
 // Method override
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const review = require('./models/review.js');
 app.use(methodOverride("_method"))
 
 // DB Connection
@@ -43,7 +45,7 @@ connectDB(DB_URL)
 // Middlewares
 const validateListing=(req,res,next)=>{
     const result=listingValidation.validate(req.body);
-    console.log(res);
+    // console.log(res);
     if(result.error){
         throw new ExpressError(400,result.error)
     }else{
@@ -98,17 +100,38 @@ app.delete("/listings/:id", asyncWrap(async (req, res) => {
 // Show Route
 app.get("/listings/:id", asyncWrap(async (req, res) => {
     const { id } = req.params;
-    const listing = await Listing.findById(id)
+    const listing = await Listing.findById(id).populate('reviews')
     if(!listing){
         throw new ExpressError(400,'Bad Request');
     }
+    // console.log(listing);
     res.render('listings/show.ejs', { listing })
 }))
 
 //------------------------------------------Review Model----------------------------------------------
 
+app.post("/listings/:id/review",asyncWrap(async (req,res)=>{
+    const {id}=req.params;
+    const review=Review(req.body.review)
+    const listing = await Listing.findById(id)
+    listing.reviews.push(review);
+    await listing.save();
+    await review.save()
+    res.redirect(`/listings/${id}`)
+}))
+
+app.delete('/listings/:id/review/:rid',asyncWrap(async (req,res)=>{
+    const {id,rid}=req.params;
+    console.log("rid:",rid)
+    await Listing.findByIdAndUpdate(id,{$pull:{reviews:rid}})
+    await Review.findByIdAndDelete(rid);
+    res.redirect(`/listings/${id}`)
+}))
+// --------------------------------------Error Handling------------------------------------------------
+
 app.use((err,req,res,next)=>{
     const {status=500,message="Something went wrong"}=err;
+    console.log(err)
     res.status(status).render('listings/Error.ejs',{message});
 })
 

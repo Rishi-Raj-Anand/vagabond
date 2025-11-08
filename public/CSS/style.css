@@ -83,13 +83,13 @@ footer a{
 }
 
 
-.card{
+.card-index{
     border: none;
     margin: 1rem;
     position: relative;
 }
 
-.card::after{
+.card-index::after{
     content: "";
     display: block;
     width: 18rem;
@@ -100,7 +100,7 @@ footer a{
     border-radius: 5%;
     
 }
-.card:hover::after{
+.card-index:hover::after{
     opacity: 0.15;
 }
 
@@ -140,10 +140,11 @@ footer a{
 .show-wrapper{
     width: 50%;
     margin-top: 2rem;
+    min-height: 100vh;
 }
 .show-img{
     width: 100%;
-    height: 40%;
+    height: 30%;
     object-fit:cover;
     border-radius:1rem ;
 }
@@ -163,6 +164,13 @@ footer a{
     font-weight: 600;
     margin-bottom: 1rem;
 }
+.all-reviews{
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.review-card{
+    margin: 1rem;
+}
 
 

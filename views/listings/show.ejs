@@ -16,6 +16,47 @@
             <button class="btn btn-dark">Delete</button>
         </form>
     </div>
+    <!-- ---------------------------------------Review section------------------------------------------- -->
+
+    <hr>
+    <div class="review">
+        <h4>Leave a Review</h4>
+        <form action="/listings/<%=listing._id %>/review" method="POST" class="needs-validation"  novalidate>
+            <div>
+                <label for="rating" class="form-label">Rating</label><br>   
+                <input type="range" name="review[likes]" id="rating"  min="1" max="5" step="1" class="form-range">
+            </div>
+            <div>
+                <label for="comment" class="form-label">Comment</label><br>
+                <textarea name="review[comment]" id="comment" class="form-control" rows="5" required></textarea>
+                <div class="invalid-feedback">Comment is required !!</div>
+            </div>
+            <br>
+            <button class="btn btn-outline-dark">Submit</button>
+        </form>
+    </div>
+    <hr>
+
+    <!-- -----------------------------------------------All Reviews Section---------------------------------- -->
+    <div class="reviews">
+        <h4>All Reviews</h4>
+        <div class="all-reviews ">
+            <% for( let review of listing.reviews ) { %>
+                <div class="review-card card " style="width: 18rem;">
+                    <div class="card-body">
+                        <!-- <h5 class="card-title">Rishi</h5> -->
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Rishi</h6>
+                        <p class="card-text"><%= review.comment%></p>
+                    </div>
+                    <br>
+                    <form action="/listings/<%= listing._id%>/review/<%=review._id%>?_method=DELETE" method="post">
+                        <button class="btn btn-dark">Delete</button>
+                    </form>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
 </div>
 
     
