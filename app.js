@@ -4,9 +4,25 @@ const app = express();
 let port = 8080;
 const listingRoute=require('./routes/listing.js')
 const reviewRoute=require('./routes/review.js')
-
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const flash = require('connect-flash');
 
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser())
+const sessionOptions={
+  secret: 'vagabondxyz',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+        //  secure: true,
+     expires:Date.now()+7*24*60*60*1000,
+     maxAge:7*24*60*60*1000,
+     httpOnly:true}
+}
+app.use(session(sessionOptions))
+
+app.use(flash())
 
 // EJS template
 const ejsmate = require('ejs-mate')
@@ -38,9 +54,16 @@ connectDB(DB_URL)
 
 //-------------------------------------------------- Routes-------------------------------------------
 
+
+app.use((req,res,next)=>{
+    app.locals.success=req.flash('success');
+    app.locals.error=req.flash('error');    
+    next()
+})
 // Routes
 app.get("/", (req, res) => {
     res.redirect("/listings")
+    
 })
 
 app.use('/listings',listingRoute);
