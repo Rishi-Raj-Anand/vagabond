@@ -8,6 +8,10 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const flash = require('connect-flash');
 
+const passport=require('passport');
+const LocalStrategy=require('passport-local');
+const User=require('./models/user.js')
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 const sessionOptions={
@@ -23,6 +27,13 @@ const sessionOptions={
 app.use(session(sessionOptions))
 
 app.use(flash())
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // EJS template
 const ejsmate = require('ejs-mate')
@@ -66,6 +77,16 @@ app.get("/", (req, res) => {
     
 })
 
+app.get("/demouser",async(req,res)=>{
+    const user=new User({
+        email:"rika@gmail.com",
+        username:"rika"
+    })
+
+    let regUser=await User.register(user,"rika@123");
+    res.send(regUser);
+})
+ 
 app.use('/listings',listingRoute);
 app.use('/listings/:id/review',reviewRoute);
 
