@@ -20,25 +20,30 @@
         <p class="user-heading">Create an account</p>
       </div>
 
-      <form action="/user/signin" method="post" class="user-form">
+      <form action="/user/signin" method="post" class="user-form needs-validation" novalidate>
         <div>
           <label for="username">Username</label>
-          <input type="text" placeholder="john" name="username" id="username" class="form-control">
+          <input type="text" placeholder="username" name="username" id="username" class="form-control" required>
         </div>
 
         <div>
           <label for="email">Email</label>
-          <input type="email" placeholder="abc@gmail.com" name="email" id="email" class="form-control">
+          <input type="email" placeholder="abc@gmail.com" name="email" id="email" class="form-control" required>
         </div>
 
         <div>
           <label for="password">Password</label>
-          <input type="password" placeholder="xyz" name="password" id="password" class="form-control">
+          <input type="password" placeholder="*****" name="password" id="password" class="form-control" required>
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button class="btn user-btn " type="submit">Signin</button>
+          <button class="btn user-btn " type="submit">Sign up</button>
         </div>
+        <div class="other-option">
+          <p>Already have an account?</p>
+          <a href="/user/login">login</a>
+        </div>
+          
         
       </form>
     </div>

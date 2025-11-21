@@ -191,7 +191,7 @@ footer a{
 
 .user-main{
     width: 25%;
-    height: 57%;    
+    height: 58%;    
     /* border: #FF5473 solid ; */
     margin-top: 10rem;
     display: flex;
@@ -237,3 +237,19 @@ footer a{
 .login-main{
     height: 50%;
 }
+.other-option{
+    display: flex;
+    justify-content: center;
+    margin-top: -0.5rem;
+    font-weight: 600;
+    font-size: small;
+    gap: 0.5rem;
+
+}
+
+.other-option a{
+    text-decoration: none;
+    font-weight: 700;
+    /* color: #FF5473; */
+}
+

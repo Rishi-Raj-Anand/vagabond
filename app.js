@@ -69,7 +69,8 @@ connectDB(DB_URL)
 
 app.use((req,res,next)=>{
     app.locals.success=req.flash('success');
-    app.locals.error=req.flash('error');    
+    app.locals.error=req.flash('error'); 
+    app.locals.user=req.user;
     next()
 })
 // Routes
@@ -78,15 +79,6 @@ app.get("/", (req, res) => {
     
 })
 
-app.get("/demouser",async(req,res)=>{
-    const user=new User({
-        email:"rika@gmail.com",
-        username:"rika"
-    })
-
-    let regUser=await User.register(user,"rika@123");
-    res.send(regUser);
-})
 
 app.use('/user',userRoute); 
 app.use('/listings',listingRoute);

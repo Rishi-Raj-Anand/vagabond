@@ -1,18 +1,19 @@
-const express=require('express')
-const router=express.Router({mergeParams:true})
-const ExpressError=require('../utils/ExpressError')
-const asyncWrap=require('../utils/asyncWrap.js')
-const listingValidation=require('../schemeValid/listing.js')
+const express = require('express')
+const router = express.Router({ mergeParams: true })
+const ExpressError = require('../utils/ExpressError')
+const asyncWrap = require('../utils/asyncWrap.js')
+const listingValidation = require('../schemeValid/listing.js')
 const Listing = require('../models/listing.js');
 const flash = require('connect-flash');
+const { isLoggedin } = require('../middlewares.js')
 
 
-const validateListing=(req,res,next)=>{
-    const result=listingValidation.validate(req.body);
+const validateListing = (req, res, next) => {
+    const result = listingValidation.validate(req.body);
     // console.log(res);
-    if(result.error){
-        throw new ExpressError(400,result.error)
-    }else{
+    if (result.error) {
+        throw new ExpressError(400, result.error)
+    } else {
         next();
     }
 }
@@ -24,39 +25,39 @@ router.get("/", asyncWrap(async (req, res) => {
 }))
 
 // Create route
-router.get("/new",(req, res) => {
+router.get("/new", isLoggedin, (req, res) => {
     res.render("listings/new.ejs")
 })
 
-router.post("/",validateListing, asyncWrap(async (req, res) => {
+router.post("/", isLoggedin, validateListing, asyncWrap(async (req, res) => {
     const newlisting = new Listing(req.body.listing)
     await newlisting.save()
-    req.flash("success","New Listing Created")
+    req.flash("success", "New Listing Created")
     res.redirect("/listings")
 }))
 
 // Update Route
 
-router.get("/:id/edit", asyncWrap(async (req, res) => {
+router.get("/:id/edit", isLoggedin, asyncWrap(async (req, res) => {
     let { id } = req.params
     let listing = await Listing.findById(id)
     res.render("listings/edit.ejs", { listing })
 }))
 
-router.put("/:id",validateListing, asyncWrap(async (req, res) => {
+router.put("/:id", isLoggedin, validateListing, asyncWrap(async (req, res) => {
     let { id } = req.params;
     await Listing.findByIdAndUpdate(id, { ...req.body.listing })
-    req.flash("success","Listing Updated")
+    req.flash("success", "Listing Updated")
     res.redirect(`/listings/${id}`)
 
 }))
 
 
 // Delete Route
-router.delete("/:id", asyncWrap(async (req, res) => { 
+router.delete("/:id", isLoggedin, asyncWrap(async (req, res) => {
     let { id } = req.params
     await Listing.findByIdAndDelete(id)
-    req.flash("success","Listing Deleted")
+    req.flash("success", "Listing Deleted")
     res.redirect('/listings')
 }))
 
@@ -65,14 +66,14 @@ router.get("/:id", asyncWrap(async (req, res) => {
     const { id } = req.params;
     // console.log("Test",id)
     const listing = await Listing.findById(id).populate('reviews')
-    if(!listing){
-        req.flash("error","Listing doesn't exists!")
+    if (!listing) {
+        req.flash("error", "Listing doesn't exists!")
         res.redirect('/listings')
-    }else{
+    } else {
         // console.log(listing); 
-    res.render('listings/show.ejs', { listing })
+        res.render('listings/show.ejs', { listing })
     }
-    
+
 }))
 
-module.exports=router;
+module.exports = router;

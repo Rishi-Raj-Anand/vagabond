@@ -24,16 +24,21 @@
       <form action="/user/login" method="post" class="user-form needs-validation" novalidate>
         <div>
           <label for="username">Username</label>
-          <input type="text" placeholder="john" name="username" id="username" class="form-control" required>
+          <input type="text" placeholder="username" name="username" id="username" class="form-control" required>
         </div>
 
         <div>
           <label for="password">Password</label>
-          <input type="password" placeholder="xyz" name="password" id="password" class="form-control" required>
+          <input type="password" placeholder="*****" name="password" id="password" class="form-control" required>
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
           <button class="btn user-btn " type="submit">Login</button>
+        </div>
+
+        <div class="other-option">
+          <p>Don't have an account?</p>
+          <a href="/user/signin">Register</a>
         </div>
       </form>
     </div>
