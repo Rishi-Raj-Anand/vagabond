@@ -174,3 +174,66 @@ footer a{
 }
 
 
+.user{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start ;
+    align-items:center;
+
+    background-image: url(/assets/userBack.png );
+    background-attachment:fixed;
+    background-size:cover;
+    background-position:center;
+    /* background: ; */
+}
+
+.user-main{
+    width: 25%;
+    height: 57%;    
+    /* border: #FF5473 solid ; */
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: rgba(234, 239, 243, 0.823);
+    padding: 1rem;
+    border-radius: 0.7rem;
+    color: #FF5473;
+    
+}
+
+.user-form{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.user-btn{
+    background-color: #FF5473;
+    color: #fff;
+}
+
+.user-btn:hover{
+    background-color: #FF5473;
+    color: #fff;
+}
+
+.user-heading{
+    text-align:center;
+    font-size:x-large;
+    font-weight: 600;
+    margin-top: -1rem;
+}
+
+.user-logo{
+    text-align:center;
+    position: relative;
+    /* top: -2rem; */
+}
+
+.login-main{
+    height: 50%;
+}

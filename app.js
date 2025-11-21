@@ -4,6 +4,7 @@ const app = express();
 let port = 8080;
 const listingRoute=require('./routes/listing.js')
 const reviewRoute=require('./routes/review.js')
+const userRoute=require('./routes/user.js')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const flash = require('connect-flash');
@@ -86,7 +87,8 @@ app.get("/demouser",async(req,res)=>{
     let regUser=await User.register(user,"rika@123");
     res.send(regUser);
 })
- 
+
+app.use('/user',userRoute); 
 app.use('/listings',listingRoute);
 app.use('/listings/:id/review',reviewRoute);
 

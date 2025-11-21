@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAGABOND</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/CSS/style.css">
+
+</head>
+<body>
+
+<div class="user">
+    <%- include("../includes/flash.ejs")%>
+    <div class="user-main login-main">
+        <div class="container-fluid  user-logo">
+            <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i>  </a>
+        </div>
+      <div>
+        <p class="user-heading">Login</p>
+      </div>
+
+      <form action="/user/login" method="post" class="user-form needs-validation" novalidate>
+        <div>
+          <label for="username">Username</label>
+          <input type="text" placeholder="john" name="username" id="username" class="form-control" required>
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input type="password" placeholder="xyz" name="password" id="password" class="form-control" required>
+        </div>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button class="btn user-btn " type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+</div>
+
+<%- include("../includes/footer.ejs")%>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="/JS/script.js"></script>
+</body>
+</html>
