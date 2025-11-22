@@ -16,6 +16,8 @@ connectDB(DB_URL)
 
 async function initDB(){
     await Listing.deleteMany({});
+    initData.data=initData.data.map((listing)=>({...listing,owner:"691fc75125b9e39c35f9677a"}))
+    // console.log(initData.data);
     await Listing.insertMany(initData.data);
     console.log("Data is initialized")
 }

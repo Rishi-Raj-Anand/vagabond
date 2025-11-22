@@ -5,7 +5,7 @@ const asyncWrap = require('../utils/asyncWrap.js')
 const listingValidation = require('../schemeValid/listing.js')
 const Listing = require('../models/listing.js');
 const flash = require('connect-flash');
-const { isLoggedin } = require('../middlewares.js')
+const { isLoggedin,isListingOwner } = require('../middlewares.js')
 
 
 const validateListing = (req, res, next) => {
@@ -26,11 +26,13 @@ router.get("/", asyncWrap(async (req, res) => {
 
 // Create route
 router.get("/new", isLoggedin, (req, res) => {
+    // console.log(req.user)
     res.render("listings/new.ejs")
 })
 
 router.post("/", isLoggedin, validateListing, asyncWrap(async (req, res) => {
     const newlisting = new Listing(req.body.listing)
+    newlisting.owner=req.user._id;
     await newlisting.save()
     req.flash("success", "New Listing Created")
     res.redirect("/listings")
@@ -38,13 +40,13 @@ router.post("/", isLoggedin, validateListing, asyncWrap(async (req, res) => {
 
 // Update Route
 
-router.get("/:id/edit", isLoggedin, asyncWrap(async (req, res) => {
+router.get("/:id/edit", isLoggedin,isListingOwner, asyncWrap(async (req, res) => {
     let { id } = req.params
     let listing = await Listing.findById(id)
     res.render("listings/edit.ejs", { listing })
 }))
 
-router.put("/:id", isLoggedin, validateListing, asyncWrap(async (req, res) => {
+router.put("/:id", isLoggedin,isListingOwner, validateListing, asyncWrap(async (req, res) => {
     let { id } = req.params;
     await Listing.findByIdAndUpdate(id, { ...req.body.listing })
     req.flash("success", "Listing Updated")
@@ -54,7 +56,7 @@ router.put("/:id", isLoggedin, validateListing, asyncWrap(async (req, res) => {
 
 
 // Delete Route
-router.delete("/:id", isLoggedin, asyncWrap(async (req, res) => {
+router.delete("/:id", isLoggedin,isListingOwner, asyncWrap(async (req, res) => {
     let { id } = req.params
     await Listing.findByIdAndDelete(id)
     req.flash("success", "Listing Deleted")
@@ -65,7 +67,7 @@ router.delete("/:id", isLoggedin, asyncWrap(async (req, res) => {
 router.get("/:id", asyncWrap(async (req, res) => {
     const { id } = req.params;
     // console.log("Test",id)
-    const listing = await Listing.findById(id).populate('reviews')
+    const listing = await Listing.findById(id).populate('reviews').populate('owner')
     if (!listing) {
         req.flash("error", "Listing doesn't exists!")
         res.redirect('/listings')
