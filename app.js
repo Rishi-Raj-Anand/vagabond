@@ -66,13 +66,13 @@ connectDB(DB_URL)
 
 //-------------------------------------------------- Routes-------------------------------------------
 
-
 app.use((req,res,next)=>{
     app.locals.success=req.flash('success');
     app.locals.error=req.flash('error'); 
     app.locals.currUser=req.user;
     next()
 })
+
 // Routes
 app.get("/", (req, res) => {
     res.redirect("/listings")

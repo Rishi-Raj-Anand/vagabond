@@ -22,15 +22,24 @@
     </div>
     <%}%>
     <!-- ---------------------------------------Review section------------------------------------------- -->
-
+    <%if(currUser){%>
     <hr>
     <div class="review">
         <h4>Leave a Review</h4>
         <form action="/listings/<%=listing._id %>/review" method="POST" class="needs-validation"  novalidate>
-            <div>
-                <label for="rating" class="form-label">Rating</label><br>   
-                <input type="range" name="review[likes]" id="rating"  min="1" max="5" step="1" class="form-range">
-            </div>
+            <fieldset class="starability-slot">
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[likes]" value="0" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[likes]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[likes]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[likes]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[likes]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[likes]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
             <div>
                 <label for="comment" class="form-label">Comment</label><br>
                 <textarea name="review[comment]" id="comment" class="form-control" rows="5" required></textarea>
@@ -40,6 +49,7 @@
             <button class="btn btn-outline-dark">Submit</button>
         </form>
     </div>
+    <%}%>
     <hr>
 
     <!-- -----------------------------------------------All Reviews Section---------------------------------- -->
@@ -50,13 +60,20 @@
                 <div class="review-card card " style="width: 18rem;">
                     <div class="card-body">
                         <!-- <h5 class="card-title">Rishi</h5> -->
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Rishi</h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary d-flex ">
+                            <div class="user-review-icon">
+                                <i class="fa-solid fa-user "></i>
+                            </div>
+                             &nbsp;@<%= review.author.username%></h6>
+                             <p class="starability-result" data-rating="<%=review.likes%>"></p>
                         <p class="card-text"><%= review.comment%></p>
                     </div>
                     <br>
+                    <%if(currUser && currUser._id.equals(review.author._id)){%>
                     <form action="/listings/<%= listing._id%>/review/<%=review._id%>?_method=DELETE" method="post">
                         <button class="btn btn-dark">Delete</button>
                     </form>
+                    <%}%>
                 </div>
             <% } %>
         </div>

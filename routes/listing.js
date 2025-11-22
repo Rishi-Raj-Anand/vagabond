@@ -2,21 +2,10 @@ const express = require('express')
 const router = express.Router({ mergeParams: true })
 const ExpressError = require('../utils/ExpressError')
 const asyncWrap = require('../utils/asyncWrap.js')
-const listingValidation = require('../schemeValid/listing.js')
 const Listing = require('../models/listing.js');
 const flash = require('connect-flash');
-const { isLoggedin,isListingOwner } = require('../middlewares.js')
+const { isLoggedin,isListingOwner,validateListing } = require('../middlewares.js')
 
-
-const validateListing = (req, res, next) => {
-    const result = listingValidation.validate(req.body);
-    // console.log(res);
-    if (result.error) {
-        throw new ExpressError(400, result.error)
-    } else {
-        next();
-    }
-}
 
 // Index Route
 router.get("/", asyncWrap(async (req, res) => {
@@ -67,7 +56,7 @@ router.delete("/:id", isLoggedin,isListingOwner, asyncWrap(async (req, res) => {
 router.get("/:id", asyncWrap(async (req, res) => {
     const { id } = req.params;
     // console.log("Test",id)
-    const listing = await Listing.findById(id).populate('reviews').populate('owner')
+    const listing = await Listing.findById(id).populate({path:'reviews',populate:{ path:"author",}}).populate('owner')
     if (!listing) {
         req.flash("error", "Listing doesn't exists!")
         res.redirect('/listings')

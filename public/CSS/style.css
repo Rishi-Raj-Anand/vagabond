@@ -253,3 +253,12 @@ footer a{
     /* color: #FF5473; */
 }
 
+.user-review-icon{
+    width: 1.75rem;
+    height: 1.75rem;
+    background-color: rgba(109, 124, 119, 0.604);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

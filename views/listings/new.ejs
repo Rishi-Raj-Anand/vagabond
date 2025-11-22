@@ -2,7 +2,7 @@
 
     <div class="form-wrapper mx-auto ">
         <h3>New Listing</h3>
-        <form action="/listings" method="post" class="needs-validation form-new " novalidate>
+        <form action="/listings" method="post" class="needs-validation form-new " novalidate enctype="multipart/form-data">
             <div class="full-width" >
                 <label for="title" class="form-label">Title:</label>
                 <input type="text" name="listing[title]" id="title" placeholder="Enter Title" class="form-control"
@@ -22,7 +22,7 @@
 
                 <div class="x2">
                     <label for="image" class="form-label">Image:</label>
-                    <input type="url" name="listing[image]" id="image" placeholder="Enter Image URL"
+                    <input type="file" name="listing[image]" id="image" placeholder="Upload Image"
                         class="form-control">
                 </div>
             </div>
