@@ -15,14 +15,17 @@ footer{
 .main-container{
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 200vh;
     flex:1;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fff;
 }
 .wrapper{
     position: relative;
     width: 100vw;
     display: flex;
     flex-direction: column;
+   
 }
 
 .full-width{
@@ -32,6 +35,7 @@ footer{
 
 .navbar{
     width: 100%;
+    background-color: #FEFEFE;
 }
 
 .navbar{
@@ -44,6 +48,7 @@ footer{
 }
 .nav-link{
     color: #222;
+    font-weight:600;
 }
 
 .legal a{
@@ -149,7 +154,7 @@ footer a{
     border-radius:1rem ;
 }
 
-.show-btns{
+.show-btn{
     display: flex;
     gap: 0.5rem;
 }
@@ -261,4 +266,113 @@ footer a{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#map{
+  width: 100%;
+  height: 40vh;
+  margin-bottom: 2rem;
+}
+
+.review-btn-del{
+    margin-top: -1.5rem;
+    margin-left:12rem;
+}
+
+.review-star{
+    width: 5rem;
+    height: 20rem;
+}
+
+.show-img {
+  /* Force CSS to respect the dimensions, overriding resets */
+  width: 100%; 
+  height: 400px;
+  
+  /* This is the magic property */
+  object-fit: cover; 
+  
+  /* Optional: centers the image if cropped */
+  object-position: center;
+}
+
+
+/* The new wrapper to hold buttons and reviews */
+.reviews-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* The scrollable container itself */
+.all-reviews {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: smooth; /* Makes the JS scroll smooth */
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem 0; /* Add padding so shadows/borders don't get cut off */
+}
+
+/* HIDE SCROLLBARS */
+/* For Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+/* For IE, Edge and Firefox */
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Individual Card Styling */
+.review-card {
+    flex: 0 0 auto;
+    /* width: 18rem;  <-- Keep inline style or uncomment this */
+}
+
+/* Scroll Buttons */
+.scroll-btn {
+    background-color: #fff; /* Or your theme color */
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10; /* Ensure buttons are on top */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+
+.scroll-btn:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Position buttons absolutely so they sit over the content edges */
+.prev-btn {
+    position: absolute;
+    left: -20px; /* Adjust as needed */
+}
+
+.next-btn {
+    position: absolute;
+    right: -20px; /* Adjust as needed */
+}
+
+.show-btns{
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+.flash{
+    width: 30%;
+    max-width: 30%;
+    text-align: center;
 }

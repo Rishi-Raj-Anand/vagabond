@@ -7,14 +7,19 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link " aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="/listings">All Listings</a>
-        <a class="nav-link" href="/listings/new">Add New Listing</a>
+        <!-- <a class="nav-link" href="/listings">All Listings</a> -->
+        <% if (!currUser){%>
+        <a class="nav-link" href="/listings/new">Become a host </a>
+        <%}%>
+
+        
       </div>
       <div class="navbar-nav ms-auto ">
         <% if (!currUser){%>
         <a class="nav-link" href="/user/signin">Sign in</a>
         <a class="nav-link" href="/user/login">Login</a>
         <% }else{%>
+        <a class="nav-link" href="/listings/new">Become a host </a>
         <a class="nav-link" href="/user/logout">Logout</a>
         <%}%>
       </div>

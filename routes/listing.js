@@ -5,7 +5,10 @@ const asyncWrap = require('../utils/asyncWrap.js')
 const Listing = require('../models/listing.js');
 const flash = require('connect-flash');
 const { isLoggedin,isListingOwner,validateListing } = require('../middlewares.js')
-
+require('dotenv').config()
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapToken=process.env.MAP_TOKEN
+const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 // Index Route
 router.get("/", asyncWrap(async (req, res) => {
@@ -19,10 +22,19 @@ router.get("/new", isLoggedin, (req, res) => {
     res.render("listings/new.ejs")
 })
 
-router.post("/", isLoggedin, validateListing, asyncWrap(async (req, res) => {
-    const newlisting = new Listing(req.body.listing)
+router.post("/",isLoggedin,validateListing, asyncWrap(async (req, res) => {
+    const response=await geocodingClient.forwardGeocode({
+        query: `${req.body.listing.location},${req.body.listing.country}`,
+        limit: 1
+    })
+    .send() 
+  
+    let newlisting = new Listing(req.body.listing)
     newlisting.owner=req.user._id;
-    await newlisting.save()
+    newlisting.geometry=response.body.features[0].geometry;
+   
+    newlisting=await newlisting.save()
+    console.log(newlisting)
     req.flash("success", "New Listing Created")
     res.redirect("/listings")
 }))
@@ -37,7 +49,12 @@ router.get("/:id/edit", isLoggedin,isListingOwner, asyncWrap(async (req, res) =>
 
 router.put("/:id", isLoggedin,isListingOwner, validateListing, asyncWrap(async (req, res) => {
     let { id } = req.params;
-    await Listing.findByIdAndUpdate(id, { ...req.body.listing })
+    const response=await geocodingClient.forwardGeocode({
+        query: `${req.body.listing.location},${req.body.listing.country}`,
+        limit: 1
+    })  
+    .send() 
+    await Listing.findByIdAndUpdate(id, { ...req.body.listing,geometry:response.body.features[0].geometry })
     req.flash("success", "Listing Updated")
     res.redirect(`/listings/${id}`)
 
@@ -54,8 +71,7 @@ router.delete("/:id", isLoggedin,isListingOwner, asyncWrap(async (req, res) => {
 
 // Show Route
 router.get("/:id", asyncWrap(async (req, res) => {
-    const { id } = req.params;
-    // console.log("Test",id)
+    const {id}=req.params;
     const listing = await Listing.findById(id).populate({path:'reviews',populate:{ path:"author",}}).populate('owner')
     if (!listing) {
         req.flash("error", "Listing doesn't exists!")
