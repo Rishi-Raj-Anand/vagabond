@@ -1,4 +1,4 @@
-<nav class="navbar  navbar-expand-md bg-body border-bottom sticky-top   ">
+<nav class="navbar  navbar-expand-md bg-body border-bottom sticky-top bg-white  ">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i>  </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,15 @@
 
         
       </div>
-      <div class="navbar-nav ms-auto ">
+      <div class="nav-search mx-auto">
+        <form action="/listings/search" method="post" >
+          <div class="search-bar">
+            <input type="text" placeholder="Search destinations" class="form-control search-box" name="q">
+            <button type="submit" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+        </form>
+      </div>
+      <div class="navbar-nav  ">
         <% if (!currUser){%>
         <a class="nav-link" href="/user/signin">Sign in</a>
         <a class="nav-link" href="/user/login">Login</a>

@@ -208,6 +208,11 @@ footer a{
     color: #FF5473;
     
 }
+@media (max-width: 768px) {
+    .user-main {
+        width: 90%;
+    }
+}
 
 .user-form{
     display: flex;
@@ -375,4 +380,45 @@ footer a{
     width: 30%;
     max-width: 30%;
     text-align: center;
+}
+
+.search-bar     {
+    display: flex;
+}
+
+.input-group-text{
+    border-radius: 0;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    background-color: #FF5473;
+    border: #FF5473;
+    outline: none; 
+    border-left: none;
+      
+
+}
+
+.search-box{
+    border-radius: 0;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    width: 18vw;
+    border-right: none;
+}
+
+.search-box:focus{
+    outline: none;       
+    box-shadow: none;    
+    border-color: #ced4da;
+}
+
+.index-listing{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.navbar-collapse {
+    background-color: #FEFEFE;
+   
 }

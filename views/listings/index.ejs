@@ -6,12 +6,12 @@
 
     <div class="body-wrapper mx-auto pt-2 ">
 
-        <div class="container align-items-space-around pt-4 row  row-cols-lg-4 row-cols-xs-1   row-cols-md-2">
+        <div class="index-listing">
             <% for( let listing of allListing  ) { %>
                 <a href="/listings/<%= listing._id %> "  class='card-link'>
                     <div class="card-index card" style="width: 18rem;height: 18rem;">
 
-                        <img src="<%= listing.image %>" class="card-img-top " alt="<%= listing.title %>">
+                        <img src="<%= listing.image.url %>" class="card-img-top " alt="<%= listing.title %>">
 
                         <div class="card-body ">
                             <p class="card-title"><%= listing.title %></p>

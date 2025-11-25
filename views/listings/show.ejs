@@ -5,7 +5,7 @@
 </script>
 <div class="show-wrapper mx-auto">
     <h2 class="show-title"><%= listing.title %></h2>
-    <img src="<%= listing.image %>" width="500px" height="400px" alt="Image" class="show-img">
+    <img src="<%= listing.image.url %>" width="500px" height="400px" alt="Image" class="show-img">
     <div class="show-desc">
         <p>₹ <%= listing.price.toLocaleString("en-IN") %>/night </p>
 

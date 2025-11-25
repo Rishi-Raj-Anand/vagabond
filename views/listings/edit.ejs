@@ -4,7 +4,7 @@
 
 <div class="form-wrapper mx-auto ">
     <h3>Edit Listing</h3>
-    <form action="/listings/<%=listing._id%>?_method=PUT" method="POST" class="needs-validation" novalidate>
+    <form action="/listings/<%=listing._id%>?_method=PUT" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
 
         <div class="full-width">
             <label for="title" class="form-label">Title:</label>
@@ -21,7 +21,7 @@
             
             <div class="x2">
                 <label for="image" class="form-label">Image:</label>
-                <input type="url" name="listing[image]" id="image" value="<%=listing.image%>" class="form-control" required>
+                <input type="file" name="listing[image]" id="image" placeholder="Upload New Image" class="form-control" >
                 <div class="invalid-feedback">Image required !!</div>
             </div>
         </div>
