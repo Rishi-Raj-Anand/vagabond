@@ -10,6 +10,9 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapToken=process.env.MAP_TOKEN
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 // Index Route
 router.get("/", asyncWrap(async (req, res) => {
     const allListing = await Listing.find({})
@@ -22,21 +25,23 @@ router.get("/new", isLoggedin, (req, res) => {
     res.render("listings/new.ejs")
 })
 
-router.post("/",isLoggedin,validateListing, asyncWrap(async (req, res) => {
-    const response=await geocodingClient.forwardGeocode({
-        query: `${req.body.listing.location},${req.body.listing.country}`,
-        limit: 1
-    })
-    .send() 
+router.post("/",upload.single('listing[image]'),asyncWrap(async (req, res) => {
+
+    res.send(req.file)
+    // const response=await geocodingClient.forwardGeocode({
+    //     query: `${req.body.listing.location},${req.body.listing.country}`,
+    //     limit: 1
+    // })
+    // .send() 
   
-    let newlisting = new Listing(req.body.listing)
-    newlisting.owner=req.user._id;
-    newlisting.geometry=response.body.features[0].geometry;
+    // let newlisting = new Listing(req.body.listing)
+    // newlisting.owner=req.user._id;
+    // newlisting.geometry=response.body.features[0].geometry;
    
-    newlisting=await newlisting.save()
-    console.log(newlisting)
-    req.flash("success", "New Listing Created")
-    res.redirect("/listings")
+    // newlisting=await newlisting.save()
+    // console.log(newlisting)
+    // req.flash("success", "New Listing Created")
+    // res.redirect("/listings")
 }))
 
 // Update Route
