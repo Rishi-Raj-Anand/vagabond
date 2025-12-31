@@ -15,7 +15,7 @@
 
                         <div class="card-body ">
                             <p class="card-title"><%= listing.title %></p>
-                            <p class="card-price">₹ <%= listing.price.toLocaleString("en-IN") %>/night</p>
+                            <p class="card-price"><%= listing.price.toLocaleString("en-US", { style: "currency", currency: "USD" }) %>/day</p>
                         </div>
                     </div>
                 </a>

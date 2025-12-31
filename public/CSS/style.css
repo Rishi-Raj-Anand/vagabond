@@ -422,3 +422,104 @@ footer a{
     background-color: #FEFEFE;
    
 }
+.profile-index-listing{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+}
+.nav-profile-logo{
+    width:2rem;
+    height: 2rem;
+    /* border: 2px solid black ; */
+    background:#FF5473;
+    color:#222;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-top: 0.3rem;
+    
+
+}
+
+.profile-page{  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 100vh;
+
+}
+
+.profile-user{
+    grid-column: 1/span 1;
+    border-right: 1px solid #a7a8ab;
+    
+}   
+.profile-card{
+    background-color:#cbcccf ;
+    margin: 0.7rem;
+    height: 20%;
+    border-radius: 8px;
+    gap: 0.5rem;
+}
+
+.profile-review-section{
+    height: 80%;
+    /* background-color: #FF5473; */
+    margin: 0.7rem;
+}
+
+.profile-card-left{
+    display: flex;
+}
+
+.profile-desc{
+    margin:  1.7rem;
+
+    line-height: 0.5rem;
+}
+
+.user-activity-data{
+    display: flex;
+    justify-content:space-evenly;   
+    gap: 7rem;
+}
+.profile-listing{
+    grid-column: 2/span 3;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    overflow-y: scroll;
+}
+
+.profile-logo{
+    width:5rem;
+    height: 5rem;
+    border: 2px solid rgb(239, 234, 234) ;
+    background:#FF5473;
+    color:#222;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size:larger;
+    margin:0.5rem;
+}
+
+.reviews-cards{
+    height: 100%;
+    overflow-y:scroll ;
+}
+
+.profile-section-review-card{
+    width: 100%;
+    display: flex;
+    border: 1px solid #cbcccf;
+    border-radius: 4px;
+    height: 10%;
+    margin-bottom: 1rem;
+    padding: 0.6rem;
+    justify-content:space-around;
+    align-items: center;
+    text-overflow:ellipsis;
+}
