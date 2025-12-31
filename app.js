@@ -101,7 +101,7 @@ app.get("/", (req, res) => {
     
 })
 
-
+ 
 app.use('/user',userRoute); 
 app.use('/listings',listingRoute);
 app.use('/listings/:id/review',reviewRoute);
@@ -115,7 +115,7 @@ app.use((err,req,res,next)=>{
     res.status(status).render('listings/Error.ejs',{message});
 })
 
-app.use((req, res,next) => {
+app.use((req, res,next) => {  
     res.send("PAGE NOT FOUND !!!")
 })
 

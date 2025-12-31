@@ -1,0 +1,60 @@
+<%- layout('/layouts/boilerplate.ejs') -%>
+    <div>
+        <!-- <h1>profile page</h1>/\ -->
+
+        
+        <div class="profile-page">
+            <div class="profile-user">
+                <div class="profile-card">
+                    <div class="profile-card-left">
+                        <div class="profile-logo"><i class="fa-solid fa-user"></i></div>
+                        <div class="profile-desc">
+                            <p><b>Username:</b> <i>@<%=user.username%></i></p>
+                            <p><b>Email:</b> <i><%=user.email%></i></p>
+                        </div>
+                    </div>
+                    <div class="user-activity-data">
+                        <p><b>Reviews:</b> <%=reviews.length %></p>
+                        <p><b>Listings:</b> <%=userListings.length %> </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="profile-review-section">
+                    <h3 class="text-center">Reviews</h3>
+                    <div class="reviews-cards">
+                    <% for( let review of reviews ) { %>
+                        <div class="profile-section-review-card">
+                            <p><%= review.comment %></p>
+                            <p><%= review.likes %> <i class="fa-solid fa-star"></i></p>
+                        </div>
+                    <% } %>
+                </div>
+                </div>
+               
+            </div>
+
+            <div class="profile-listing">
+                <h2 class="mx-3">Listings</h2>
+                <div class="profile-index-listing">
+                    <% for( let listing of userListings  ) { %>
+                        <a href="/listings/<%= listing._id %> "  class='card-link'>
+                            <div class="card-index card" style="width: 18rem;height: 18rem;">
+
+                                <img src="<%= listing.image.url %>" class="card-img-top " alt="<%= listing.title %>">
+
+                                <div class="card-body ">
+                                    <p class="card-title"><%= listing.title %></p>
+                                    <p class="card-price">$ <%= listing.price.toLocaleString("en-IN") %>/day</p>
+                                </div>
+                            </div>
+                        </a>
+                    <% } %>
+                </div>
+
+            </div>
+        </div>
+
+
+        
+    </div>
+    

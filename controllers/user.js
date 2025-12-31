@@ -1,4 +1,6 @@
+const Listing = require('../models/listing.js');
 const User=require('../models/user.js');
+const Review=require('../models/review.js')
 
 module.exports.logoutUser=(req,res,next)=>{
     req.logOut((err)=>{
@@ -45,4 +47,11 @@ module.exports.getSigninForm=(req,res)=>{
 
 module.exports.getLoginForm=(req,res)=>{
     res.render('../views/user/login.ejs')
+}
+
+module.exports.getProfile=async (req,res)=>{
+    let user=req.user;
+    let userListings= await Listing.find({owner:user._id})
+    let reviews= await Review.find({author:user._id})
+    res.render('../views/user/profile.ejs',{user,userListings,reviews})
 }

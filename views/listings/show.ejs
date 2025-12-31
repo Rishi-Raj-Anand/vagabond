@@ -7,7 +7,7 @@
     <h2 class="show-title"><%= listing.title %></h2>
     <img src="<%= listing.image.url %>" width="500px" height="400px" alt="Image" class="show-img">
     <div class="show-desc">
-        <p>₹ <%= listing.price.toLocaleString("en-IN") %>/night </p>
+        <p><%= listing.price.toLocaleString("en-US", { style: "currency", currency: "USD" }) %>/day </p>
 
         
         <p class="italic"><%= listing.description %></p>
@@ -17,7 +17,7 @@
             <p class=""><i>~ <%= listing.owner.username%></i></p>
         </div>
         
-
+     
         
     </div>
     <div class="show-btns">
@@ -34,9 +34,16 @@
 
 
         <div>
-            <form action="/listings/<%= listing._id %>" method="get">
-            <button class="btn btn-outline-danger">Book Now</button>
-        </form>
+            <div>
+                <% if (!(currUser && currUser._id.equals(listing.owner._id))) { %>
+                    <a 
+                        href="mailto:<%= listing.owner.email %>?subject=Booking Request: <%= listing.title %>&body=Hello, I am interested in your property: <%= listing.title %>. Please let me know if it is available."
+                        class="btn btn-outline-danger"
+                    >
+                        Contact Owner
+                    </a>
+                <% } %>
+            </div>
         </div>
     </div>
     <!-- ---------------------------------------Review section------------------------------------------- -->
