@@ -475,7 +475,9 @@ footer a{
 
 .profile-desc{
     margin:  1.7rem;
-
+    margin-left: 0  ;
+    margin-right: 0;
+    text-overflow: clip;
     line-height: 0.5rem;
 }
 
@@ -483,6 +485,7 @@ footer a{
     display: flex;
     justify-content:space-evenly;   
     gap: 7rem;
+    margin-top: -1rem;
 }
 .profile-listing{
     grid-column: 2/span 3;
