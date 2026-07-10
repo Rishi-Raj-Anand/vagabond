@@ -88,12 +88,12 @@ connectDB(DB_URL)
 
 //-------------------------------------------------- Routes-------------------------------------------
 
-app.use((req,res,next)=>{
-    app.locals.success=req.flash('success');
-    app.locals.error=req.flash('error'); 
-    app.locals.currUser=req.user;
+app.use((req, res, next) => {
+    res.locals.success=req.flash('success');
+    res.locals.error=req.flash('error'); 
+    res.locals.currUser=req.user || null;
     next()
-})
+});
 
 // Routes
 app.get("/", (req, res) => {

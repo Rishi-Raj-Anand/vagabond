@@ -58,7 +58,7 @@ Follow these steps to run the project locally on your machine.
     CLOUD_SECRET=your_cloudinary_api_secret
     MAP_TOKEN=your_mapbox_token
     ATLASDB_URL=your_mongodb_connection_string
-    SECRET=your_session_secret
+    SECRETCODE=your_session_secret
     ```
 
 4.  **Run the application**
